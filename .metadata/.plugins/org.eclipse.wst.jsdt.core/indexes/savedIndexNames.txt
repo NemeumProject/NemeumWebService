@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\Antonio\Nemeum\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1766018308.index
+794568258.index
+3373124039.index
+1027055796.index
+3187102699.index
+675992212.index
