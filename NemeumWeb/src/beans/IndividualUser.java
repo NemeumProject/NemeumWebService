@@ -38,6 +38,9 @@ public class IndividualUser {
 		this.postal_code = postal_code;
 		this.phone = phone;
 	}
+	public IndividualUser() {
+		super();
+	}
 	public Integer getId_IndividualUser() {
 		return id_IndividualUser;
 	}

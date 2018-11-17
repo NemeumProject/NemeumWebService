@@ -31,6 +31,9 @@ public class TrainerUser {
 		this.postal_code = postal_code;
 		this.phone = phone;
 	}
+	public TrainerUser() {
+		super();
+	}
 	public Integer getId_TrainerUser() {
 		return id_TrainerUser;
 	}

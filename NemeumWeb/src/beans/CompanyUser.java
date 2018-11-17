@@ -29,6 +29,9 @@ public class CompanyUser {
 		this.postal_code = postal_code;
 		this.phone = phone;
 	}
+	public CompanyUser() {
+		super();
+	}
 	public Integer getId_CompanyUser() {
 		return id_CompanyUser;
 	}
