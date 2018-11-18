@@ -22,7 +22,7 @@
 	  <div align="center" class="w3-show-inline-block">
 		  <div class="w3-bar">
 		    <a href="MainUser.jsp"><button style="width:150px; height:100px;" class="w3-btn w3-black">Users</button></a>
-		    <button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-teal">Scenarios</button>
+		    <a href="Scenarios.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-teal">Scenarios</button></a>
 		    <button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-border">Events</button>
 		  </div>
 	  </div>

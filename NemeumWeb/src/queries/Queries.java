@@ -7,9 +7,13 @@ import javax.jws.WebService;
 
 import beans.CompanyUser;
 import beans.IndividualUser;
+import beans.Scenario;
+import beans.Sport;
 import beans.TrainerUser;
 import selectmethods.CompanyUserSelect;
 import selectmethods.IndividualUserSelect;
+import selectmethods.ScenarioSelect;
+import selectmethods.SportSelect;
 import selectmethods.TrainerUserSelect;
 import updatemethods.UpdateDatabase;
 
@@ -22,6 +26,8 @@ public class Queries {
 	IndividualUserSelect ius;
 	CompanyUserSelect cus;
 	TrainerUserSelect tus;
+	ScenarioSelect ss;
+	SportSelect sps;
 	UpdateDatabase ud;
 	
 	@WebMethod
@@ -48,6 +54,44 @@ public class Queries {
 		trainerList = tus.findDatabase(query);
 		return trainerList;
 	}
+	
+	@WebMethod
+	public List<Scenario> getScenarios(){
+		List<Scenario> scenarioList;
+		ss = new ScenarioSelect();
+		String query = "SELECT * FROM \"nemeum\".scenario ORDER BY id_scenario";
+		scenarioList = ss.findDatabase(query);
+		return scenarioList;
+	}
+	
+	@WebMethod
+	public List<Sport> getSports(){
+		List<Sport> sportList;
+		sps = new SportSelect();
+		String query = "SELECT * FROM \"nemeum\".sport ORDER BY id_sport;";
+		sportList = sps.findDatabase(query);
+		return sportList;
+	}
+	
+	@WebMethod
+	public List<Scenario> getScenario(Integer id){
+		List<Scenario> scenario;
+		ss = new ScenarioSelect();
+		String query = "SELECT * FROM \"nemeum\".scenario WHERE id_scenario = '"+ id + "' ORDER BY id_scenario;";
+		scenario = ss.findDatabase(query);
+		return scenario;
+	}
+	
+	@WebMethod
+	public List<Sport> getSport(Integer id){
+		List<Sport> sportList;
+		sps = new SportSelect();
+		String query = "SELECT * FROM \"nemeum\".sport WHERE id_sport = '"+ id + "' ORDER BY id_sport;";
+		sportList = sps.findDatabase(query);
+		return sportList;
+	}
+	
+	
 	@WebMethod
 	public List<IndividualUser> getIndividualUser(Integer id){
 		List<IndividualUser> individuaList;
@@ -95,6 +139,14 @@ public class Queries {
 		String query = "DELETE FROM \"nemeum\".traineruser "
 				+ "WHERE id_trainer = '"+ id +"';";
 		ud.updateDatabase(query);	
+	}
+	
+	@WebMethod
+	public void deleteScenario(int id) {
+		ud = new UpdateDatabase();
+		String query = "DELETE FROM \"nemeum\".scenario "
+				+ "WHERE id_scenario = '"+ id +"';";
+		ud.updateDatabase(query);
 	}
 	
 	@WebMethod()
@@ -158,6 +210,43 @@ public class Queries {
 	}
 	
 	@WebMethod()
+    public void createScenario(Scenario scenario) {
+    	int idScenario = getLastIdScenario();
+    	ud = new UpdateDatabase();
+		String query = "INSERT INTO \"nemeum\".scenario (id_scenario, sport_id, price, isindoor, capacity, company_id, date_scenario)"
+		          + "VALUES('" + idScenario + "', '" + scenario.getIdSport() + "', '" + scenario.getPrice() + "', '" 
+		          + scenario.getIsIndoor() + "', '" + scenario.getCapacity() + "', '" 
+		          + scenario.getIdCompanyUser()  + "', '" + scenario.getDateScenario() + "');" + "\n"; 
+		ud.updateDatabase(query);	
+    }
+	
+	protected int getLastIdScenario() {
+		int newPk;
+		ss = new ScenarioSelect();
+		String query = "SELECT MAX(id_scenario) FROM \"nemeum\".scenario;";
+		newPk = ss.findMaxPk(query);
+		return newPk + 1;
+	}
+	
+	@WebMethod
+	public List<Sport> getIdSportByName(String name) {
+		List<Sport> sport;
+		sps = new SportSelect();
+		String query = "SELECT * FROM \"nemeum\".sport WHERE name_sport = '"+ name + "' ORDER BY id_sport;";
+		sport = sps.findDatabase(query);
+		return sport;
+	}
+	
+	@WebMethod
+	public List<CompanyUser> getIdCompanyByName(String name) {
+		List<CompanyUser> company;
+		cus = new CompanyUserSelect();
+		String query = "SELECT * FROM \"nemeum\".companyuser WHERE company_name = '"+ name + "' ORDER BY id_company;";
+		company = cus.findDatabase(query);
+		return company;
+	}
+	
+	@WebMethod()
 	public void updateIndividualUser(int idUser, IndividualUser user) {
 		ud = new UpdateDatabase();
 		String query = "UPDATE \"nemeum\".individualuser SET ispremium= "+ user.getIsPremium() +", "
@@ -183,6 +272,16 @@ public class Queries {
 		String query = "UPDATE \"nemeum\".traineruser SET ispremium= "+ user.getIsPremium() +", "
 				+ "first_name='"+ user.getFirst_name() +"', middle_surname_initial='"+ user.getMiddle_surname_initial() +"', last_surname='"+ user.getLast_surname() +"', ssn= '"+ user.getSsn() +"', "
 						+ "email='"+ user.getEmail() +"', teached_hours='" + user.getTeached_hours() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"' WHERE id_trainer='"+ idUser +"';";
+		
+		ud.updateDatabase(query);
+	}
+	
+	@WebMethod()
+	public void updateScenario(int idScenario, Scenario scenario) {
+		ud = new UpdateDatabase();
+		String query = "UPDATE \"nemeum\".scenario SET price= "+ scenario.getPrice() +", "
+				+ "isindoor='"+ scenario.getIsIndoor() +"', capacity='"+ scenario.getCapacity() +"', company_id='"+ scenario.getIdCompanyUser() +"', sport_id= '"+ scenario.getIdSport() +"', "
+						+ "date_scenario='"+ scenario.getDateScenario() +"' WHERE id_scenario='"+ idScenario +"';";
 		
 		ud.updateDatabase(query);
 	}

@@ -11,14 +11,15 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import beans.IndividualUser;
+import beans.Scenario;
 
-public class IndividualUserSelect implements SelectDatabase{
+public class ScenarioSelect implements SelectDatabase{
 
 	Connection connection;
     String strEstat;
 	@Override
-	public List<IndividualUser> findDatabase(String query) {
-		List<IndividualUser> result = new ArrayList<IndividualUser>();
+	public List<Scenario> findDatabase(String query) {
+		List<Scenario> result = new ArrayList<Scenario>();
 		ResultSet rs;
 
         try
@@ -34,22 +35,14 @@ public class IndividualUserSelect implements SelectDatabase{
                     Statement stm = connection.createStatement();
                     rs = stm.executeQuery(query);
                     while(rs.next()) {
-                    	IndividualUser l = new IndividualUser();
-                    	l.setId_IndividualUser(rs.getInt("id_user"));
-                    	l.setIsPremium(rs.getBoolean("ispremium"));
-                    	l.setFirst_name(rs.getString("first_name"));
-                    	l.setMiddle_surname_initial(rs.getString("middle_surname_initial"));
-                    	l.setLast_surname(rs.getString("last_surname"));
-                    	l.setSsn(rs.getString("ssn"));
-                    	l.setEmail(rs.getString("email"));
-                    	l.setAddress(rs.getString("address"));
-                    	l.setFree_training(rs.getBoolean("free_training"));
-                    	l.setFree_facility(rs.getBoolean("free_facility"));
-                    	l.setRented_hours(rs.getInt("rented_hours"));
-                    	l.setTrained_hours(rs.getInt("trained_hours"));
-                    	l.setCity(rs.getString("city"));
-                    	l.setPostal_code(rs.getString("postal_code"));
-                    	l.setPhone(rs.getInt("phone"));
+                    	Scenario l = new Scenario();
+                    	l.setIdScenario(rs.getInt("id_scenario"));
+                    	l.setIdSport(rs.getInt("sport_id"));
+                    	l.setPrice(rs.getDouble("price"));
+                    	l.setIsIndoor(rs.getBoolean("isindoor"));
+                    	l.setCapacity(rs.getInt("capacity"));
+                    	l.setIdCompanyUser(rs.getInt("company_id"));
+                    	l.setDateScenario(rs.getDate("date_scenario"));
                     	result.add(l);
                     }
                     connection.close();
@@ -116,4 +109,5 @@ public class IndividualUserSelect implements SelectDatabase{
         }
         return result;
     }
+
 }

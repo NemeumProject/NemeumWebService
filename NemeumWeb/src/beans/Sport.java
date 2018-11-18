@@ -13,6 +13,9 @@ public class Sport {
 		this.max_players = max_players;
 		this.isTeamSport = isTeamSport;
 	}
+	public Sport() {
+		super();
+	}
 	public Integer getIdSport() {
 		return idSport;
 	}

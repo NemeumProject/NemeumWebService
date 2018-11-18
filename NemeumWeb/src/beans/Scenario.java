@@ -22,6 +22,9 @@ public class Scenario {
 		this.capacity = capacity;
 		this.dateScenario = dateScenario;
 	}
+	public Scenario() {
+		super();
+	}
 	public Integer getIdScenario() {
 		return idScenario;
 	}
