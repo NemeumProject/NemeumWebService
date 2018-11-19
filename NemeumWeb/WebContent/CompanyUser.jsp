@@ -15,13 +15,14 @@ Queries q = new Queries();
 List<CompanyUser> listCompany = q.getCompanyUsers();
 %>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 10px;">
 		<h1>List of company users</h1>
 		<% for(int i=0; i<listCompany.size(); i++ ){ %>     
 			      <%=listCompany.get(i).getCompanyName()%> 
 			      <a href="DetailCompanyUser.jsp?id=<%=listCompany.get(i).getId_CompanyUser()%>"><button class="btn btn-default">See details</button></a>
 			      <br>
 		   	<%} %>
+		   	<br>
 		   	<a href="PostCompanyUser.jsp"><button class="btn btn-primary">Create company user</button></a>
 		   	<a href="MainUser.jsp"><button class="btn btn-default">Go back</button></a>
 	</div>

@@ -15,13 +15,14 @@ Queries q = new Queries();
 List<IndividualUser> listIndividual = q.getIndividualUsers();
 %>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 10px;">
 		<h1>List of individual users</h1>
 		<% for(int i=0; i<listIndividual.size(); i++ ){ %>     
 		      <%=listIndividual.get(i).getFirst_name()%> 
 		      <a href="DetailIndividualUser.jsp?id=<%=listIndividual.get(i).getId_IndividualUser()%>"><button class="btn btn-default">See details</button></a>
 		      <br>
 	   	<%} %>
+	   	<br>
 	   	<a href="PostIndividualUser.jsp"><button class="btn btn-primary">Create User</button></a>
 	   	<a href="MainUser.jsp"><button class="btn btn-default">Go back</button></a>
 	</div>

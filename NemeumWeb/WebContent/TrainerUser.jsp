@@ -15,13 +15,14 @@ Queries q = new Queries();
 List<TrainerUser> listTrainers = q.getTrainerUsers();
 %>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 10px;">
 	<h1>List of trainer users</h1>
 	<% for(int i=0; i<listTrainers.size(); i++ ){ %>     
 	      <%=listTrainers.get(i).getFirst_name()%> 
 	      <a href="DetailTrainerUser.jsp?id=<%=listTrainers.get(i).getId_TrainerUser()%>"><button class="btn btn-default">See details</button></a>
 	      <br>
    	<%} %>
+   	<br>
    	<a href="PostTrainerUser.jsp"><button class="btn btn-primary">Create trainer user</button></a>
    	<a href="MainUser.jsp"><button class="btn btn-default">Go back</button></a>
 	</div>

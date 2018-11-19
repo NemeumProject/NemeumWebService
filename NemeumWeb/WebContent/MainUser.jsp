@@ -25,6 +25,10 @@
 		    <a href="CompanyUser.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-teal">Company users</button></a>
 		    <a href="TrainerUser.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-border">Trainers users</button></a>
 		  </div>
+		  <br>
+		  <br>
+		  <br>
+		  <a href="MainPage.jsp"><button class="btn btn-default">Go back</button></a>
 	  </div>
 	</div>
 </body>

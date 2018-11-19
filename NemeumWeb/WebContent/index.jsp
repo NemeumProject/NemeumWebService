@@ -20,7 +20,7 @@
     	<div style="margin-left:550px">
 	    	Username: <input type="text" name="username">
 	    	<br>
-		    Password: <input type="password" name="password">
+		    Password: <input type="password" name="password" style="margin-left:5px;">
     	</div>
     	<br>
 	    <div class="col-md-12 text-center">

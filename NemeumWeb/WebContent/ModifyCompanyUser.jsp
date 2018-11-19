@@ -16,7 +16,7 @@ List<CompanyUser> l = c.getCompanyUser(Integer.parseInt(id));
 <title>Company User: <%=l.get(0).getCompanyName()%></title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 40px;">
 		<b size="36"><u>Company User <%=l.get(0).getCompanyName()%> data:</u></b>
 		<br>
 		<form method="post" action="sModifyCompanyUser">
@@ -50,6 +50,7 @@ List<CompanyUser> l = c.getCompanyUser(Integer.parseInt(id));
 			Postal code: <input type="text" name="postal_code" value="<%= l.get(0).getPostal_code() %>" required>
 			<br>
 			Phone: <input type="text" name="phone" value="<%= l.get(0).getPhone() %>" required>
+			<br>
 			<br>
 		  	<button type="submit" class="btn btn-primary">Modify</button>
 		  	<a href="DetailCompanyUser.jsp?id=<%=l.get(0).getId_CompanyUser()%>"><button class="btn btn-default" type="button">Go back</button></a>

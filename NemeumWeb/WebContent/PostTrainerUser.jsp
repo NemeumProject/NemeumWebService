@@ -50,6 +50,7 @@
 	    	  			<option value="1">Yes</option>	
 		    </select>
 		    <br>
+		    <br>
 			<button type="submit" class="btn btn-primary">Create</button>
 			<a href="IndividualUser.jsp"><button class="btn btn-default" type="button">Go back</button></a>
 		</form>

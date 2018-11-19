@@ -16,7 +16,7 @@ List<TrainerUser> listTrainer = c.getTrainerUser(Integer.parseInt(id));
 <title>Trainer: <%=listTrainer.get(0).getFirst_name()%></title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 40px;">
 		<b size="36"><u>Trainer <%=listTrainer.get(0).getFirst_name()%> data:</u></b>
 		<br>
 		Surname: <%= listTrainer.get(0).getMiddle_surname_initial() %>
@@ -43,6 +43,7 @@ List<TrainerUser> listTrainer = c.getTrainerUser(Integer.parseInt(id));
 		Postal code: <%=listTrainer.get(0).getPostal_code() %>
 		<br>
 		Phone: <%=listTrainer.get(0).getPhone() %>
+		<br>
 		<br>
 		<form method="post" action="sDeleteTrainerUser">
 			<a href="ModifyTrainerUser.jsp?id=<%=listTrainer.get(0).getId_TrainerUser()%>"><button class="btn btn-primary" type="button">Modify</button></a>

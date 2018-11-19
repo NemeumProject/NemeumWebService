@@ -16,7 +16,7 @@ List<Scenario> listScenarios = q.getScenarios();
 %>
 <body>
 	<div align="center">
-		<h1>List of individual users</h1>
+		<h1>List of scenarios</h1>
 		<% for(int i=0; i<listScenarios.size(); i++ ){ %>     
 		      Scenario: <%=listScenarios.get(i).getIdScenario()%> 
 		      <a href="DetailScenario.jsp?id=<%=listScenarios.get(i).getIdScenario()%>"><button class="btn btn-default">See details</button></a>

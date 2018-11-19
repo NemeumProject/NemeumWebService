@@ -11,6 +11,9 @@ public class Team {
 		this.idSport = idSport;
 		this.name = name;
 	}
+	public Team() {
+		super();
+	}
 	public Integer getIdTeam() {
 		return idTeam;
 	}

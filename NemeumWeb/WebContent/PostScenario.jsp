@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>Create a individual user</title>
+<title>Create a scenario</title>
 </head>
 <%
 Queries c = new Queries();
@@ -49,6 +49,7 @@ List<Sport> listSport = c.getSports();
 			<br>
 			Date:
 			<input type="date" name="date" required>
+			<br>
 			<br>
 			<button type="submit" class="btn btn-primary">Create</button>
 			<a href="Scenarios.jsp"><button class="btn btn-default" type="button">Go back</button></a>

@@ -16,7 +16,7 @@ List<IndividualUser> listIndividual = c.getIndividualUser(Integer.parseInt(id));
 <title>User: <%=listIndividual.get(0).getFirst_name()%></title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 40px;">
 		<b size="36"><u>User <%=listIndividual.get(0).getFirst_name()%> data:</u></b>
 		<br>
 		Surname: <%= listIndividual.get(0).getMiddle_surname_initial() %>
@@ -59,6 +59,7 @@ List<IndividualUser> listIndividual = c.getIndividualUser(Integer.parseInt(id));
 		Postal code: <%=listIndividual.get(0).getPostal_code() %>
 		<br>
 		Phone: <%=listIndividual.get(0).getPhone() %>
+		<br>
 		<br>
 		<form method="post" action="sDeleteIndividualUser">
 			<a href="ModifyIndividualUser.jsp?id=<%=listIndividual.get(0).getId_IndividualUser()%>"><button class="btn btn-primary" type="button">Modify</button></a>

@@ -18,7 +18,7 @@ List<CompanyUser> company = c.getCompanyUser(scenario.get(0).getIdCompanyUser())
 <title>Scenario: <%=scenario.get(0).getIdScenario()%></title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 40px;">
 		<b size="36"><u>Scenario <%=scenario.get(0).getIdScenario()%> data:</u></b>
 		<br>
 		Sport: <%=sport.get(0).getName() %>
@@ -34,9 +34,10 @@ List<CompanyUser> company = c.getCompanyUser(scenario.get(0).getIdCompanyUser())
 		<%} %>
 		Capacity: <%=scenario.get(0).getCapacity() %>
 		<br>
-		Company name: <%=company.get(0).getCompanyName() %>
+		Company name: <a href="DetailCompanyUser.jsp?id=<%=company.get(0).getId_CompanyUser()%>"><%=company.get(0).getCompanyName() %></a> 
 		<br>
 		Date: <%=scenario.get(0).getDateScenario() %>
+		<br>
 		<br>
 		<form method="post" action="sDeleteScenario">
 			<a href="ModifyScenario.jsp?id=<%=scenario.get(0).getIdScenario()%>"><button class="btn btn-primary" type="button">Modify</button></a>

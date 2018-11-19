@@ -11,6 +11,9 @@ public class Team_IndividualUser {
 		this.idTeam = idTeam;
 		this.id_IndividualUser = id_IndividualUser;
 	}
+	public Team_IndividualUser() {
+		super();
+	}
 	public Integer getTeam_IndividualUser() {
 		return team_IndividualUser;
 	}

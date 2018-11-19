@@ -35,6 +35,9 @@ public class Event {
 		this.phone = phone;
 		this.dateEvent = dateEvent;
 	}
+	public Event() {
+		super();
+	}
 	public Integer getIdEvent() {
 		return idEvent;
 	}

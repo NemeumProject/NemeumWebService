@@ -20,7 +20,7 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 <title>Scenario: <%=l.get(0).getIdScenario()%></title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-top: 40px;">
 		<b size="36"><u>Scenario <%=l.get(0).getIdScenario()%> data:</u></b>
 		<br>
 		<form method="post" action="sModifyScenario">
@@ -54,6 +54,7 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 			</select>
 			<br>
 			Date: <input type="date" name="date" value="<%=l.get(0).getDateScenario() %>" required>
+			<br>
 			<br>
 		  	<button type="submit" class="btn btn-primary">Modify</button>
 		  	<a href="DetailScenario.jsp?id=<%=l.get(0).getIdScenario()%>"><button class="btn btn-default" type="button">Go back</button></a>
