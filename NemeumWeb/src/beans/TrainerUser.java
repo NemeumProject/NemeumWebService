@@ -14,9 +14,12 @@ public class TrainerUser {
 	private String address;
 	private String postal_code;
 	private Integer phone;
+	private String description;
+	private String title;
+	
 	public TrainerUser(Integer id_TrainerUser, Boolean isPremium, String first_name, String middle_surname_initial,
 			String last_surname, String ssn, String email, Integer teached_hours, String city, String address,
-			String postal_code, Integer phone) {
+			String postal_code, Integer phone, String description, String title) {
 		super();
 		this.id_TrainerUser = id_TrainerUser;
 		this.isPremium = isPremium;
@@ -30,6 +33,8 @@ public class TrainerUser {
 		this.address = address;
 		this.postal_code = postal_code;
 		this.phone = phone;
+		this.description = description;
+		this.title = title;
 	}
 	public TrainerUser() {
 		super();
@@ -105,6 +110,18 @@ public class TrainerUser {
 	}
 	public void setPhone(Integer phone) {
 		this.phone = phone;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

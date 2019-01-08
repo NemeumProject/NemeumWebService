@@ -56,33 +56,44 @@ public class ModifyScenario extends HttpServlet {
 		Scenario scenario = new Scenario();
 		Queries c = new Queries();
 		
-		int idScenario = Integer.parseInt((String) session.getAttribute("idScenario"));
-		scenario.setIdScenario(idScenario);
+		String regex = "[0-9]+";
 		
-		scenario.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
+		if(request.getParameter("price").matches(regex) && request.getParameter("capacity").matches(regex)) {
 		
-		String dateString = request.getParameter("date");
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-		scenario.setDateScenario(new java.sql.Date(date.getTime()));
-
-		scenario.setPrice(Double.parseDouble((String) request.getParameter("price")));
-		
-		scenario.setIdSport(c.getIdSportByName(request.getParameter("sport")).get(0).getIdSport());
-		scenario.setIdCompanyUser(c.getIdCompanyByName(request.getParameter("company")).get(0).getId_CompanyUser());
-		
-		if(request.getParameter("isIndoor").equals("0")) {
-			scenario.setIsIndoor(false);
+			int idScenario = Integer.parseInt((String) session.getAttribute("idScenario"));
+			scenario.setIdScenario(idScenario);
+			scenario.setAddress(request.getParameter("address"));
+			scenario.setCity(request.getParameter("city"));
+			scenario.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
+			scenario.setTitle(request.getParameter("title"));
+			scenario.setDescription(request.getParameter("description"));
+			String dateString = request.getParameter("date");
+			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
+			scenario.setDateScenario(new java.sql.Date(date.getTime()));
+	
+			scenario.setPrice(Double.parseDouble((String) request.getParameter("price")));
+			
+			scenario.setIdSport(c.getIdSportByName(request.getParameter("sport")).get(0).getIdSport());
+			scenario.setIdCompanyUser(c.getIdCompanyByName(request.getParameter("company")).get(0).getId_CompanyUser());
+			
+			c.updateScenario(scenario.getIdScenario(), scenario);
+			
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Scenarios.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
-			scenario.setIsIndoor(true);
-		}
-		c.updateScenario(scenario.getIdScenario(), scenario);
-		
-		ServletContext context = getServletContext();
-		RequestDispatcher df = context.getRequestDispatcher("/Scenarios.jsp");
-		try {
-			df.forward(request, response);
-		} catch (IOException e) {
-			e.printStackTrace();
+			request.setAttribute("errorMessage", "Invalid numeric data");
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Scenarios.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
         
 	}

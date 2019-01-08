@@ -49,32 +49,41 @@ public class PostCompanyUser extends HttpServlet {
 		CompanyUser user = new CompanyUser();
 		
 		session = request.getSession(true);
+		String regex = "[0-9]+";
 		
-		user.setComercialName(request.getParameter("comercial_name"));
-		user.setCompanyName(request.getParameter("company_name"));
-		user.setContactPerson(request.getParameter("contact_person"));
-		user.setSsn(request.getParameter("ssn"));
-		user.setEmail(request.getParameter("email"));
-		user.setCity(request.getParameter("city"));
-		user.setAddress(request.getParameter("address"));
-		user.setPostal_code(request.getParameter("postal_code"));
-		user.setPhone(Integer.parseInt(request.getParameter("phone")));
+		if(request.getParameter("phone").matches(regex)) {
 		
-		if(request.getParameter("isPremium").equals("0")) {
-			user.setIsPremium(false);
-		}else {
-			user.setIsPremium(true);
-		}
-		
-		Queries c = new Queries();
-		c.createCompanyUser(user);
-		
-		ServletContext context = getServletContext();
-		RequestDispatcher df = context.getRequestDispatcher("/CompanyUser.jsp");
-		try {
-			df.forward(request, response);
-		} catch (IOException e) {
-			e.printStackTrace();
+			user.setComercialName(request.getParameter("comercial_name"));
+			user.setCompanyName(request.getParameter("company_name"));
+			user.setContactPerson(request.getParameter("contact_person"));
+			user.setSsn(request.getParameter("ssn"));
+			user.setEmail(request.getParameter("email"));
+			user.setCity(request.getParameter("city"));
+			user.setAddress(request.getParameter("address"));
+			user.setPostal_code(request.getParameter("postal_code"));
+			user.setPhone(Integer.parseInt(request.getParameter("phone")));
+			user.setSlogan(request.getParameter("title"));
+			user.setDescription(request.getParameter("description"));
+			
+			Queries c = new Queries();
+			c.createCompanyUser(user);
+			
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/CompanyUser.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else{
+			request.setAttribute("errorMessage", "Invalid numeric data");
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Post-CompanyUser");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

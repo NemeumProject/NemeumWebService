@@ -43,6 +43,10 @@ public class ScenarioSelect implements SelectDatabase{
                     	l.setCapacity(rs.getInt("capacity"));
                     	l.setIdCompanyUser(rs.getInt("company_id"));
                     	l.setDateScenario(rs.getDate("date_scenario"));
+                    	l.setDescription(rs.getString("description"));
+                    	l.setTitle(rs.getString("title"));
+                    	l.setAddress(rs.getString("address"));
+                    	l.setCity(rs.getString("city"));
                     	result.add(l);
                     }
                     connection.close();

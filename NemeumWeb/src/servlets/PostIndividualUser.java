@@ -49,47 +49,40 @@ public class PostIndividualUser extends HttpServlet {
 		IndividualUser user = new IndividualUser();
 		
 		session = request.getSession(true);
-		
-		user.setFirst_name(request.getParameter("name"));
-		user.setMiddle_surname_initial(request.getParameter("surname"));
-		user.setLast_surname(request.getParameter("last_surname"));
-		user.setSsn(request.getParameter("ssn"));
-		user.setEmail(request.getParameter("email"));
-		user.setRented_hours(Integer.parseInt(request.getParameter("rented_hours")));
-		user.setTrained_hours(Integer.parseInt(request.getParameter("trained_hours")));
-		user.setCity(request.getParameter("city"));
-		user.setAddress(request.getParameter("address"));
-		user.setPostal_code(request.getParameter("postal_code"));
-		user.setPhone(Integer.parseInt(request.getParameter("phone")));
-		
-		if(request.getParameter("isPremium").equals("0")) {
-			user.setIsPremium(false);
+		String regex = "[0-9]+";
+		if(request.getParameter("phone").matches(regex)) {
+			user.setFirst_name(request.getParameter("name"));
+			user.setMiddle_surname_initial(request.getParameter("surname"));
+			user.setLast_surname(request.getParameter("last_surname"));
+			user.setSsn(request.getParameter("ssn"));
+			user.setEmail(request.getParameter("email"));
+			user.setCity(request.getParameter("city"));
+			user.setAddress(request.getParameter("address"));
+			user.setPostal_code(request.getParameter("postal_code"));
+			user.setPhone(Integer.parseInt(request.getParameter("phone")));
+
+			Queries c = new Queries();
+			c.createIndividualUser(user);
+			
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/IndividualUser.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
-			user.setIsPremium(true);
+			request.setAttribute("errorMessage", "Invalid numeric data");
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Post-IndividualUser");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		if(request.getParameter("free_training").equals("0")) {
-			user.setFree_training(false);
-		}else {
-			user.setFree_training(true);
-		}
 		
-		if(request.getParameter("free_facility").equals("0")) {
-			user.setFree_facility(false);
-		}else {
-			user.setFree_facility(true);
-		}
-		
-		Queries c = new Queries();
-		c.createIndividualUser(user);
-		
-		ServletContext context = getServletContext();
-		RequestDispatcher df = context.getRequestDispatcher("/IndividualUser.jsp");
-		try {
-			df.forward(request, response);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 

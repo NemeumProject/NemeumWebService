@@ -13,9 +13,12 @@ public class CompanyUser {
 	private String address;
 	private String postal_code;
 	private Integer phone;
+	private String description;
+	private String slogan;
+	
 	public CompanyUser(Integer id_CompanyUser, Boolean isPremium, String comercialName, String companyName,
 			String contactPerson, String ssn, String email, String city, String address, String postal_code,
-			Integer phone) {
+			Integer phone, String description, String slogan) {
 		super();
 		this.id_CompanyUser = id_CompanyUser;
 		this.isPremium = isPremium;
@@ -28,6 +31,8 @@ public class CompanyUser {
 		this.address = address;
 		this.postal_code = postal_code;
 		this.phone = phone;
+		this.description = description;
+		this.slogan = slogan;
 	}
 	public CompanyUser() {
 		super();
@@ -97,6 +102,18 @@ public class CompanyUser {
 	}
 	public void setPhone(Integer phone) {
 		this.phone = phone;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getSlogan() {
+		return slogan;
+	}
+	public void setSlogan(String slogan) {
+		this.slogan = slogan;
 	}
 	
 	

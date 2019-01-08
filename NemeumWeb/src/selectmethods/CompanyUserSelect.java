@@ -46,6 +46,8 @@ public class CompanyUserSelect implements SelectDatabase{
                     	l.setAddress(rs.getString("address"));
                     	l.setPostal_code(rs.getString("postal_code"));
                     	l.setPhone(rs.getInt("phone"));
+                    	l.setSlogan(rs.getString("title"));
+                    	l.setDescription(rs.getString("description"));
                     	result.add(l);
                     }
                     connection.close();

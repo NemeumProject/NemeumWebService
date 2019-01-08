@@ -38,8 +38,6 @@ public class SportSelect implements SelectDatabase{
                     	Sport l = new Sport();
                     	l.setIdSport(rs.getInt("id_sport"));
                     	l.setName(rs.getString("name_sport"));
-                    	l.setMax_players(rs.getInt("max_player"));
-                    	l.setIsTeamSport(rs.getBoolean("is_team_sport"));
                     	result.add(l);
                     }
                     connection.close();

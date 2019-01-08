@@ -11,8 +11,14 @@ public class Scenario {
 	private Boolean isIndoor;
 	private Integer capacity;
 	private Date dateScenario;
+	private String description;
+	private String title;
+	private String city;
+	private String address;
+	
+	
 	public Scenario(Integer idScenario, Integer idSport, Integer idCompanyUser, Double price, Boolean isIndoor,
-			Integer capacity, Date dateScenario) {
+			Integer capacity, Date dateScenario, String description, String title, String city, String address) {
 		super();
 		this.idScenario = idScenario;
 		this.idSport = idSport;
@@ -21,6 +27,10 @@ public class Scenario {
 		this.isIndoor = isIndoor;
 		this.capacity = capacity;
 		this.dateScenario = dateScenario;
+		this.description = description;
+		this.title = title;
+		this.city = city;
+		this.address = address;
 	}
 	public Scenario() {
 		super();
@@ -67,5 +77,30 @@ public class Scenario {
 	public void setDateScenario(Date dateScenario) {
 		this.dateScenario = dateScenario;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	
 }

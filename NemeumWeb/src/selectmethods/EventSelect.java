@@ -48,6 +48,9 @@ public class EventSelect implements SelectDatabase{
                     	l.setPostalCode(rs.getString("postal_code"));
                     	l.setPhone(rs.getInt("phone"));
                     	l.setDateEvent(rs.getDate("date_event"));
+                    	l.setDescription(rs.getString("description"));
+                    	l.setTitle(rs.getString("title"));
+                    	l.setImage(rs.getString("image"));
                     	result.add(l);
                     }
                     connection.close();

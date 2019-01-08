@@ -56,38 +56,52 @@ public class ModifyEvent extends HttpServlet {
 		Event event = new Event();
 		Queries c = new Queries();
 		
-		int idEvent = Integer.parseInt((String) session.getAttribute("idEvent"));
-		event.setIdEvent(idEvent);
+		String regex = "[0-9]+";
 		
-		event.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
-		event.setPhone(Integer.parseInt((String) request.getParameter("phone")));
-		String dateString = request.getParameter("date");
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-		event.setDateEvent(new java.sql.Date(date.getTime()));
-
-		event.setPrice(Double.parseDouble((String) request.getParameter("price")));
+		if(request.getParameter("price").matches(regex) && request.getParameter("phone").matches(regex) && request.getParameter("capacity").matches(regex)) {
 		
-		event.setIdSport(c.getIdSportByName(request.getParameter("sport")).get(0).getIdSport());
-		event.setId_CompanyUser(c.getIdCompanyByName(request.getParameter("company")).get(0).getId_CompanyUser());
-		
-		event.setAddress(request.getParameter("address"));
-		event.setPostalCode(request.getParameter("postal_code"));
-		event.setCity(request.getParameter("city"));
-		
-		if(request.getParameter("isIndoor").equals("0")) {
-			event.setIsIndoor(false);
+			int idEvent = Integer.parseInt((String) session.getAttribute("idEvent"));
+			event.setIdEvent(idEvent);
+			
+			event.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
+			event.setPhone(Integer.parseInt((String) request.getParameter("phone")));
+			String dateString = request.getParameter("date");
+			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
+			event.setDateEvent(new java.sql.Date(date.getTime()));
+	
+			event.setPrice(Double.parseDouble((String) request.getParameter("price")));
+			event.setTitle(request.getParameter("title"));
+			event.setDescription(request.getParameter("description"));
+			event.setIdSport(c.getIdSportByName(request.getParameter("sport")).get(0).getIdSport());
+			
+			event.setAddress(request.getParameter("address"));
+			event.setPostalCode(request.getParameter("postal_code"));
+			event.setCity(request.getParameter("city"));
+			
+			if(request.getParameter("isIndoor").equals("0")) {
+				event.setIsIndoor(false);
+			}else {
+				event.setIsIndoor(true);
+			}
+			
+			c.updateEvent(event);
+			
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Events.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
-			event.setIsIndoor(true);
-		}
-		
-		c.updateEvent(event);
-		
-		ServletContext context = getServletContext();
-		RequestDispatcher df = context.getRequestDispatcher("/Events.jsp");
-		try {
-			df.forward(request, response);
-		} catch (IOException e) {
-			e.printStackTrace();
+			request.setAttribute("errorMessage", "Invalid numeric data");
+			ServletContext context = getServletContext();
+			RequestDispatcher df = context.getRequestDispatcher("/Events.jsp");
+			try {
+				df.forward(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
         
 	}

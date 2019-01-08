@@ -2,55 +2,109 @@
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>Create a individual user</title>
+	<title>Create a trainer user</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-	<div align="center">
-		<h1>Create a company user</h1>
-		<br>
-		<form method="post" action="sPostCompanyUser">
-			Comercial name:
-			<input type="text" name="comercial_name" required>
-			<br>
-			Company name:
-			<input type="text" name="company_name" required>
-			<br>
-			Contact person:
-			<input type="text" name="contact_person" required>
-			<br>
-			Ssn:
-			<input type="text" name="ssn" required>
-			<br>
-			Email:
-			<input type="text" name="email" required>
-			<br>
-			City:
-			<input type="text" name="city" required>
-			<br>
-			Address:
-			<input type="text" name="address" required>
-			<br>
-			Postal code:
-			<input type="text" name="postal_code" required>
-			<br>
-			Phone:
-			<input type="text" name="phone" required>
-			<br>
-			Premium:
-			<select type="text" name="isPremium" required>
-		       			<option value="0">No</option>
-	    	  			<option value="1">Yes</option>	
-		    </select>
-		    <br>
-		    <br>
-			<button type="submit" class="btn btn-primary">Create</button>
-			<a href="IndividualUser.jsp"><button class="btn btn-default" type="button">Go back</button></a>
-		</form>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+				<span class="contact100-form-title">
+					Create a company user 
+				</span>
+			<form method="post" action="sPostCompanyUser">
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="company_name" placeholder="Company name"required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="comercial_name" Placeholder="Comercial name"  required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="contact_person" placeholder="Contact person" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="title" placeholder="Slogan" required>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="ssn" placeholder="Ssn" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="email" placeholder="Email" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="city" placeholder="City" required>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="address" placeholder="Address" required>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="postal_code" placeholder="Postal code"  required>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="phone" placeholder="Phone" required>
+					<span class="focus-input100"></span>
+				</div>
+				<%
+					    if(null != request.getAttribute("errorMessage"))
+					    {
+					        out.println(request.getAttribute("errorMessage"));
+					    }
+					%>
+				
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="description" placeholder="Description" required>
+					<span class="focus-input100"></span>
+				</div>
+			
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn" type="submit" class="btn btn-primary">Create</button>
+			  		<a href="CompanyUser.jsp"><button class="btn btn-default" type="button">Go back</button></a>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

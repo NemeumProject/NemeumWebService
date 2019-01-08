@@ -17,9 +17,14 @@ public class Event {
 	private String postalCode;
 	private Integer phone;
 	private Date dateEvent;
+	private String description;
+	private String image;
+	private String title;
+	
+	
 	public Event(Integer idEvent, Integer id_CompanyUser, Integer id_TrainerUser, Integer id_IndividualUser,
 			Integer idSport, Boolean isIndoor, Integer capacity, Double price, String city, String address,
-			String postalCode, Integer phone, Date dateEvent) {
+			String postalCode, Integer phone, Date dateEvent, String description, String image, String title) {
 		super();
 		this.idEvent = idEvent;
 		this.id_CompanyUser = id_CompanyUser;
@@ -34,6 +39,9 @@ public class Event {
 		this.postalCode = postalCode;
 		this.phone = phone;
 		this.dateEvent = dateEvent;
+		this.description = description;
+		this.image = image;
+		this.title = title;
 	}
 	public Event() {
 		super();
@@ -115,6 +123,24 @@ public class Event {
 	}
 	public void setDateEvent(Date dateEvent) {
 		this.dateEvent = dateEvent;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

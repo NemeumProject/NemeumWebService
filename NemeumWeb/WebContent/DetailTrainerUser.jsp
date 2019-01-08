@@ -8,51 +8,106 @@ session.setAttribute("idTrainer", id);
 Queries c = new Queries();
 List<TrainerUser> listTrainer = c.getTrainerUser(Integer.parseInt(id));
 %> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>Trainer: <%=listTrainer.get(0).getFirst_name()%></title>
+	<title>Contact V9</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-	<div align="center" style="margin-top: 40px;">
-		<b size="36"><u>Trainer <%=listTrainer.get(0).getFirst_name()%> data:</u></b>
-		<br>
-		Surname: <%= listTrainer.get(0).getMiddle_surname_initial() %>
-		<br>
-		Last surname: <%=listTrainer.get(0).getLast_surname() %>
-		<br>
-		<%if (listTrainer.get(0).getIsPremium()){ %>
-			Is Premium: Yes.
-			<br>
-		<%}else{ %>
-			Is Premium: No.
-			<br>
-		<%} %>
-		Ssn: <%=listTrainer.get(0).getSsn() %>
-		<br>
-		Email: <%=listTrainer.get(0).getEmail() %>
-		<br>
-		Teached hours: <%=listTrainer.get(0).getTeached_hours()%>
-		<br>
-		City: <%=listTrainer.get(0).getCity() %>
-		<br>
-		Address: <%=listTrainer.get(0).getAddress() %>
-		<br>
-		Postal code: <%=listTrainer.get(0).getPostal_code() %>
-		<br>
-		Phone: <%=listTrainer.get(0).getPhone() %>
-		<br>
-		<br>
-		<form method="post" action="sDeleteTrainerUser">
-			<a href="ModifyTrainerUser.jsp?id=<%=listTrainer.get(0).getId_TrainerUser()%>"><button class="btn btn-primary" type="button">Modify</button></a>
-		
-		  	<button type="submit" class="btn btn-danger">Delete</button>
-		</form>
-		<br>
-	  	<a href="TrainerUser.jsp" class="btn btn-default"><button>Go back</button></a>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<span class="contact100-form-title">
+				Trainer <%=listTrainer.get(0).getFirst_name()%> data: 
+			</span>
+
+			<b>First name</b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getFirst_name() %>
+				<span class="focus-input100"></span>
+			</div>
+
+			<b> Surname </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getMiddle_surname_initial() %>
+				<span class="focus-input100"></span>
+			</div>
+
+			<b> Last surname </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getLast_surname() %>
+				<span class="focus-input100"></span>
+			</div>
+			
+			<b> Title </b> <div class="wrap-input100 validate-input">
+					<%= listTrainer.get(0).getTitle() %>
+					<span class="focus-input100"></span>
+				</div>
+			
+			<b> Ssn </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getSsn() %>
+				<span class="focus-input100"></span>
+			</div>
+
+			<b> Email </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getEmail() %>
+				<span class="focus-input100"></span>
+			</div>
+
+			<b> City </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getCity() %>
+				<span class="focus-input100"></span>
+			</div>
+			
+			<b> Address </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getAddress() %>
+				<span class="focus-input100"></span>
+			</div>
+			
+			<b> Postal code </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getPostal_code() %>
+				<span class="focus-input100"></span>
+			</div>
+			
+			<b> Phone </b> <div class="wrap-input100 validate-input">
+				<%= listTrainer.get(0).getPhone() %>
+				<span class="focus-input100"></span>
+			</div>
+
+			<b> Description </b> <div class="wrap-input100 validate-input">
+					<%= listTrainer.get(0).getDescription() %>
+					<span class="focus-input100"></span>
+				</div>
+
+			<form method="post" action="sDeleteTrainerUser">
+				<div class="container-contact100-form-btn">
+					<a href="ModifyTrainerUser.jsp?id=<%=listTrainer.get(0).getId_TrainerUser()%>"><button class="contact100-form-btn" type="button">Modify</button></a>			
+				  	<button class="btn btn-danger" type="submit">Delete</button>
+			  	</div>
+			  	<br>
+			</form>
+			<a href="TrainerUser.jsp"><button style="margin-left: 190px;" class="btn btn-default">Go back</button></a>
+		</div>
 	</div>
-	
 </body>
 </html>

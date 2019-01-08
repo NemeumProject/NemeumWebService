@@ -1,5 +1,6 @@
 package queries;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -9,10 +10,12 @@ import beans.CompanyUser;
 import beans.Event;
 import beans.IndividualUser;
 import beans.Scenario;
+import beans.Scenario_IndividualUser;
 import beans.Sport;
 import beans.Team;
 import beans.Team_IndividualUser;
 import beans.TrainerUser;
+import selectmethods.BookingSelect;
 import selectmethods.CompanyUserSelect;
 import selectmethods.EventSelect;
 import selectmethods.IndividualUserSelect;
@@ -36,6 +39,7 @@ public class Queries {
 	TeamSelect ts;
 	EventSelect es;
 	UpdateDatabase ud;
+	BookingSelect bs;
 	
 	@WebMethod
 	public List<IndividualUser> getIndividualUsers(){
@@ -135,6 +139,15 @@ public class Queries {
 	}
 	
 	@WebMethod
+	public List<Scenario> getScenarioByTile(String title){
+		List<Scenario> scenario;
+		ss = new ScenarioSelect();
+		String query = "SELECT * FROM \"nemeum\".scenario WHERE title = '"+ title + "' ORDER BY id_scenario;";
+		scenario = ss.findDatabase(query);
+		return scenario;
+	}
+	
+	@WebMethod
 	public List<Sport> getSport(Integer id){
 		List<Sport> sportList;
 		sps = new SportSelect();
@@ -229,11 +242,13 @@ public class Queries {
     public void createIndividualUser(IndividualUser user) {
     	int idUser = getLastIdUser();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".individualuser (id_user, ispremium, first_name, middle_surname_initial, last_surname, ssn, email, free_training, free_facility, rented_hours, trained_hours, city, address, postal_code, phone)"
-		          + "VALUES('" + idUser + "', '" + user.getIsPremium() + "', '" + user.getFirst_name() + "', '" 
+    	Boolean premium = false;
+    	String username = user.getFirst_name();
+		String query = "INSERT INTO \"nemeum\".individualuser (id_user, ispremium, first_name, middle_surname_initial, last_surname, ssn, email, city, address, postal_code, phone, username, password)"
+		          + "VALUES('" + idUser + "', '" + premium + "', '" + user.getFirst_name() + "', '" 
 		          + user.getMiddle_surname_initial() + "', '" + user.getLast_surname() + "', '" 
 		          + user.getSsn()  + "', '" + user.getEmail() + "', '" 
-		          + user.getFree_training() + "', '" + user.getFree_facility() + "', '" + user.getRented_hours() + "', '" + user.getTrained_hours() + "', '" + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "');" + "\n"; 
+		          + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "', '" + username + "', '" + username + "');" + "\n"; 
 		ud.updateDatabase(query);	
     }
 	
@@ -249,11 +264,13 @@ public class Queries {
     public void createCompanyUser(CompanyUser user) {
     	int idUser = getLastIdCompanyUser();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".companyuser (id_company, ispremium, comercial_name, company_name, contact_person, ssn, email, city, address, postal_code, phone)"
-		          + "VALUES('" + idUser + "', '" + user.getIsPremium() + "', '" + user.getComercialName() + "', '" 
+    	Boolean premium = false;
+    	String username = user.getCompanyName();
+		String query = "INSERT INTO \"nemeum\".companyuser (id_company, ispremium, comercial_name, company_name, contact_person, ssn, email, city, address, postal_code, phone, username, password, title, description)"
+		          + "VALUES('" + idUser + "', '" + premium + "', '" + user.getComercialName() + "', '" 
 		          + user.getCompanyName() + "', '" + user.getContactPerson() + "', '" 
 		          + user.getSsn()  + "', '" + user.getEmail() + "', '" 
-		          + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "');" + "\n"; 
+		          + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "', '" + username + "', '" + username + "', '" + user.getSlogan() + "', '" + user.getDescription() + "');" + "\n"; 
 		ud.updateDatabase(query);	
     }
 	
@@ -269,17 +286,19 @@ public class Queries {
     public void createTrainerUser(TrainerUser user) {
     	int idUser = getLastIdTrainerUser();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".traineruser (id_trainer, ispremium, first_name, middle_surname_initial, last_surname, ssn, email, teached_hours, city, address, postal_code, phone)"
-		          + "VALUES('" + idUser + "', '" + user.getIsPremium() + "', '" + user.getFirst_name() + "', '" 
-		          + user.getMiddle_surname_initial() + "', '" + user.getLast_surname() + "', '" 
-		          + user.getSsn()  + "', '" + user.getEmail() + "', '" 
-		          + user.getTeached_hours() + "', '" + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "');" + "\n"; 
+    	Boolean premium = false;
+    	String username = user.getFirst_name();
+		String query = "INSERT INTO \"nemeum\".traineruser (id_trainer, ispremium, first_name, middle_surname_initial, last_surname, ssn, email, city, address, postal_code, phone, username, password, title, description)"
+		          + "VALUES('" + idUser + "', '" + premium + "', '" + user.getFirst_name() + "', '" 
+		          + user.getMiddle_surname_initial() + "', '" + user.getLast_surname() + "', '" + user.getSsn() + "', '" + user.getEmail() + "', '"
+		          + user.getCity() + "', '" + user.getAddress() + "', '" + user.getPostal_code() + "', '" + user.getPhone() + "', '" 
+		          + username + "', '" + username + "', '" + user.getTitle() + "', '" + user.getDescription() + "');" + "\n"; 
 		ud.updateDatabase(query);	
     }
 	
 	protected int getLastIdTrainerUser() {
 		int newPk;
-		tus = new TrainerUserSelect();
+		tus = new TrainerUserSelect(); 
 		String query = "SELECT MAX(id_trainer) FROM \"nemeum\".traineruser;";
 		newPk = tus.findMaxPk(query);
 		return newPk + 1;
@@ -289,10 +308,10 @@ public class Queries {
     public void createScenario(Scenario scenario) {
     	int idScenario = getLastIdScenario();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".scenario (id_scenario, sport_id, price, isindoor, capacity, company_id, date_scenario)"
+		String query = "INSERT INTO \"nemeum\".scenario (id_scenario, sport_id, price, capacity, company_id, date_scenario, city, address, title, description)"
 		          + "VALUES('" + idScenario + "', '" + scenario.getIdSport() + "', '" + scenario.getPrice() + "', '" 
-		          + scenario.getIsIndoor() + "', '" + scenario.getCapacity() + "', '" 
-		          + scenario.getIdCompanyUser()  + "', '" + scenario.getDateScenario() + "');" + "\n"; 
+		          + scenario.getCapacity() + "', '" 
+		          + scenario.getIdCompanyUser()  + "', '" + scenario.getDateScenario() + "', '" + scenario.getCity() + "', '" + scenario.getAddress() + "', '" + scenario.getTitle() + "', '" + scenario.getDescription() + "' );" + "\n"; 
 		ud.updateDatabase(query);	
     }
 	
@@ -300,27 +319,20 @@ public class Queries {
     public void createEvent(Event event) {
     	int idEvent = getLastIdEvent();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".event (id_event, id_sport, id_company, id_user, id_trainer, isindoor, capacity, price, city, address, postal_code, phone, date_event)"
-		          + "VALUES('" + idEvent + "', '" + event.getIdSport() + "', '" + event.getId_CompanyUser() + "', " 
-		          + null + ","  + null + ", '" 
-		          + event.getIsIndoor()  + "', '" + event.getCapacity() + "', '" + event.getPrice() + "', '" + event.getCity() + "', '" + event.getAddress() + "', '" + event.getPostalCode() + "', '" + event.getPhone() + "', '" + event.getDateEvent() + "');" + "\n"; 
+		String query = "INSERT INTO \"nemeum\".event (id_event, id_sport, isindoor, capacity, price, city, address, postal_code, phone, date_event, title, description)"
+		          + "VALUES('" + idEvent + "', '" + event.getIdSport() + "', '" + event.getIsIndoor()  +
+		          "', '" + event.getCapacity() + "', '" + event.getPrice() + "', '" + event.getCity() + "', '" + event.getAddress() + "', '" + event.getPostalCode() + "', '" + event.getPhone() + "', '" + event.getDateEvent() + "', '" + event.getTitle() + "', '" + event.getDescription() + "');" + "\n"; 
 		ud.updateDatabase(query);	
     }
 	
 	@WebMethod()
-    public void createTeam(Team team, List<IndividualUser> users) {
-    	int idTeam = getLastIdTeam();
+    public void createBooking(Scenario_IndividualUser indScenario) {
+    	int idTeam = getLastIdBooking();
     	ud = new UpdateDatabase();
-		String query = "INSERT INTO \"nemeum\".team (id_team, sport_id, name_team)"
-		          + "VALUES('" + idTeam + "', '" + team.getIdSport() + "', '" + team.getName() + "');" + "\n"; 
+		String query = "INSERT INTO \"nemeum\".user_scenario (id_user_scenario, id_scenario, date_booking, start_scenario, end_scenario, phone, name_customer, email)"
+		          + "VALUES('" + idTeam + "', '" + indScenario.getId_Scenario() + "', '" + indScenario.getDateBooking() + "', '" + indScenario.getStartBooking() + "', '" + indScenario.getEndBooking() + "', '" + indScenario.getPhone() + "', '" + indScenario.getCustomerName() + "', '" + indScenario.getEmail() + "' );" + "\n"; 
 		ud.updateDatabase(query);	
-		
-		
-		for(IndividualUser user : users) {
-			int idTeamUser = getLastIdTeamUser();
-			String query2 = "INSERT INTO \"nemeum\".team_individualuser (id_team_user, id_team, id_user) VALUES('"+ idTeamUser + "', '" + idTeam + "', '" + user.getId_IndividualUser() +"');"; 
-			ud.updateDatabase(query2);
-		}
+
     }
 	
 	protected int getLastIdEvent() {
@@ -336,6 +348,14 @@ public class Queries {
 		ts = new TeamSelect();
 		String query = "SELECT MAX(id_team) FROM \"nemeum\".team;";
 		newPk = ts.findMaxPk(query);
+		return newPk + 1;
+	}
+	
+	protected int getLastIdBooking() {
+		int newPk;
+		bs = new BookingSelect();
+		String query = "SELECT MAX(id_user_scenario) FROM \"nemeum\".user_scenario;";
+		newPk = bs.findMaxPk(query);
 		return newPk + 1;
 	}
 	
@@ -385,9 +405,8 @@ public class Queries {
 	@WebMethod()
 	public void updateIndividualUser(int idUser, IndividualUser user) {
 		ud = new UpdateDatabase();
-		String query = "UPDATE \"nemeum\".individualuser SET ispremium= "+ user.getIsPremium() +", "
-				+ "first_name='"+ user.getFirst_name() +"', middle_surname_initial='"+ user.getMiddle_surname_initial() +"', last_surname='"+ user.getLast_surname() +"', ssn= '"+ user.getSsn() +"', "
-						+ "email='"+ user.getEmail() +"', free_training='"+ user.getFree_training() +"', free_facility='" + user.getFree_facility() +"', rented_hours='" + user.getRented_hours() +"', trained_hours='" + user.getTrained_hours() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"' WHERE id_user='"+ idUser +"';";
+		String query = "UPDATE \"nemeum\".individualuser SET first_name='"+ user.getFirst_name() +"', middle_surname_initial='"+ user.getMiddle_surname_initial() +"', last_surname='"+ user.getLast_surname() +"', ssn= '"+ user.getSsn() +"', "
+						+ "email='"+ user.getEmail() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"' WHERE id_user='"+ idUser +"';";
 		
 		ud.updateDatabase(query);
 	}
@@ -395,9 +414,8 @@ public class Queries {
 	@WebMethod()
 	public void updateCompanyUser(int idUser, CompanyUser user) {
 		ud = new UpdateDatabase();
-		String query = "UPDATE \"nemeum\".companyuser SET ispremium= "+ user.getIsPremium() +", "
-				+ "comercial_name='"+ user.getComercialName() +"', company_name='"+ user.getCompanyName() +"', contact_person='"+ user.getContactPerson() +"', ssn= '"+ user.getSsn() +"', "
-						+ "email='"+ user.getEmail() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"' WHERE id_company='"+ idUser +"';";
+		String query = "UPDATE \"nemeum\".companyuser SET comercial_name='"+ user.getComercialName() +"', company_name='"+ user.getCompanyName() +"', contact_person='"+ user.getContactPerson() +"', ssn= '"+ user.getSsn() +"', "
+						+ "email='"+ user.getEmail() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() + "', title='" + user.getSlogan() + "', description='" + user.getDescription() + "' WHERE id_company='"+ idUser +"';";
 		
 		ud.updateDatabase(query);
 	}
@@ -405,9 +423,8 @@ public class Queries {
 	@WebMethod()
 	public void updateTrainerUser(int idUser, TrainerUser user) {
 		ud = new UpdateDatabase();
-		String query = "UPDATE \"nemeum\".traineruser SET ispremium= "+ user.getIsPremium() +", "
-				+ "first_name='"+ user.getFirst_name() +"', middle_surname_initial='"+ user.getMiddle_surname_initial() +"', last_surname='"+ user.getLast_surname() +"', ssn= '"+ user.getSsn() +"', "
-						+ "email='"+ user.getEmail() +"', teached_hours='" + user.getTeached_hours() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"' WHERE id_trainer='"+ idUser +"';";
+		String query = "UPDATE \"nemeum\".traineruser SET first_name='"+ user.getFirst_name() +"', middle_surname_initial='"+ user.getMiddle_surname_initial() +"', last_surname='"+ user.getLast_surname() +"', ssn= '"+ user.getSsn() +"', "
+						+ "email='"+ user.getEmail() +"', city='" + user.getCity() +"', address='" + user.getAddress() +"', postal_code='" + user.getPostal_code() +"', phone='" + user.getPhone() +"', title='" + user.getTitle() + "', description='" + user.getDescription() + "' WHERE id_trainer='"+ idUser +"';";
 		
 		ud.updateDatabase(query);
 	}
@@ -416,8 +433,8 @@ public class Queries {
 	public void updateScenario(int idScenario, Scenario scenario) {
 		ud = new UpdateDatabase();
 		String query = "UPDATE \"nemeum\".scenario SET price= "+ scenario.getPrice() +", "
-				+ "isindoor='"+ scenario.getIsIndoor() +"', capacity='"+ scenario.getCapacity() +"', company_id='"+ scenario.getIdCompanyUser() +"', sport_id= '"+ scenario.getIdSport() +"', "
-						+ "date_scenario='"+ scenario.getDateScenario() +"' WHERE id_scenario='"+ idScenario +"';";
+				+ "capacity='"+ scenario.getCapacity() +"', company_id='"+ scenario.getIdCompanyUser() +"', sport_id= '"+ scenario.getIdSport() +"', "
+						+ "date_scenario='"+ scenario.getDateScenario() +"', city='" + scenario.getCity() + "', address='" + scenario.getAddress() + "', title='" + scenario.getTitle() + "', description='" + scenario.getDescription() + "' WHERE id_scenario='"+ idScenario +"';";
 		
 		ud.updateDatabase(query);
 	}
@@ -426,24 +443,35 @@ public class Queries {
 	public void updateEvent(Event event) {
 		ud = new UpdateDatabase();
 		String query = "UPDATE \"nemeum\".event SET id_sport= "+ event.getIdSport() +", "
-				+ "id_company='"+ event.getId_CompanyUser() +"', id_user="+ event.getId_IndividualUser() +", id_trainer="+ event.getId_TrainerUser() +", isindoor= '"+ event.getIsIndoor() +"', "
+				+" isindoor= '"+ event.getIsIndoor() +"', "
 						+ "capacity='"+ event.getCapacity() + "', price='" + event.getPrice() + "', city='" + event.getCity() + "', address='" + event.getAddress() +"', "
-								+ "postal_code='" + event.getPostalCode() + "', phone='" + event.getPhone() + "', date_event='" + event.getDateEvent() + "' WHERE id_event='"+ event.getIdEvent() +"';";
+								+ "postal_code='" + event.getPostalCode() + "', phone='" + event.getPhone() + "', date_event='" + event.getDateEvent() + "', title='" + event.getTitle() + "', description='" + event.getDescription() + "' WHERE id_event='"+ event.getIdEvent() +"';";
 		
 		ud.updateDatabase(query);
 	}
 	
 	@WebMethod()
-	public void updateTeam(Team team, List<IndividualUser> users) {
+	public void updateTeam(Team team, List<IndividualUser> users, List<Team_IndividualUser> userIntermediate) {
 		ud = new UpdateDatabase();
 		String query = "UPDATE \"nemeum\".team SET sport_id= "+ team.getIdSport() +", "
 				+ "name_team='"+ team.getName() +"' WHERE id_team='"+ team.getIdTeam() +"';";
 		ud.updateDatabase(query);
-		
+		Iterator<Team_IndividualUser> i = userIntermediate.iterator();
+		String query2 = "";
+		String query3 = "";
 		for(IndividualUser user : users) {
 			List<Team_IndividualUser> list = getIdTeamIntermediateByUser(user.getId_IndividualUser());
-			String query2 = "UPDATE \"nemeum\".team_individualuser SET id_team= "+ team.getIdTeam() +", "
-					+ "id_user='"+ user.getId_IndividualUser() +"' WHERE id_team_user='"+ list.get(0).getTeam_IndividualUser() +"';";
+			while(i.hasNext()) {
+				if(!i.next().getId_IndividualUser().equals(list.get(0).getId_IndividualUser())) {
+					int idTeamUser = getLastIdTeamUser();
+					query3 = "DELETE FROM \"nemeum\".team_individualuser "
+							+ "WHERE id_user = '"+ i.next().getId_IndividualUser() +"';";
+					query2 = "INSERT INTO \"nemeum\".team_individualuser (id_team_user, id_team, id_user) VALUES('"+ idTeamUser + "', '" + team.getIdTeam() + "', '" + user.getId_IndividualUser() +"');"; 
+					i.remove();
+					break;
+				}
+			}
+			ud.updateDatabase(query3);
 			ud.updateDatabase(query2);
 		}
 	}

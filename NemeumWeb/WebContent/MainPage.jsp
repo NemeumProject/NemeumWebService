@@ -23,7 +23,7 @@
 		  <div class="w3-bar">
 		    <a href="MainUser.jsp"><button style="width:150px; height:100px;" class="w3-btn w3-black">Users</button></a>
 		    <a href="Scenarios.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-teal">Scenarios</button></a>
-		    <a href="Teams.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-border">Teams</button></a>
+		    <a href="PostBooking.jsp"><button style="width:150px; height:100px; margin-left:50px" class="w3-btn w3-border">Book a scenario</button></a>
 		    <a href="Events.jsp"><button style="width:150px; height:100px; margin-left:42px;" class="w3-btn w3-black">Events</button></a>
 		  </div>
 	  </div>

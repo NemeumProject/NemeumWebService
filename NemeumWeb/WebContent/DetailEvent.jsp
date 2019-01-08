@@ -8,55 +8,98 @@ session.setAttribute("idEvent", id);
 Queries c = new Queries();
 List<Event> event = c.getEvent(Integer.parseInt(id));
 List<CompanyUser> company = null;
-if(event.get(0).getId_CompanyUser() != null){
-	 company = c.getCompanyUser(event.get(0).getId_CompanyUser());
-}
 List<Sport> sport = c.getSport(event.get(0).getIdSport());
-%> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>Event: <%=event.get(0).getIdEvent()%></title>
+	<title>Scenario <%=event.get(0).getTitle()%></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-	<div align="center" style="margin-top: 40px;">
-		<b size="36"><u>Event <%=event.get(0).getIdEvent()%> data:</u></b>
-		<br>
-		Sport: <%=sport.get(0).getName() %>
-		<br>
-		Company: <a href="DetailCompanyUser.jsp?id=<%=company.get(0).getId_CompanyUser()%>"><%=company.get(0).getCompanyName() %></a> 
-		<br>
-		<%if (event.get(0).getIsIndoor()){ %>
-			Is Indoor: Yes.
-			<br>
-		<%}else{ %>
-			Is Indoor: No.
-			<br>
-		<%} %>
-		Capacity: <%=event.get(0).getCapacity() %>
-		<br>
-		Price: <%=event.get(0).getPrice() %>
-		<br>
-		City: <%=event.get(0).getCity() %>
-		<br>
-		Address: <%=event.get(0).getAddress() %>
-		<br>
-		Postal code: <%=event.get(0).getPostalCode() %>
-		<br>
-		Phone: <%=event.get(0).getPhone() %>
-		<br>
-		Date: <%=event.get(0).getDateEvent() %>
-		<br>
-		<br>
-		<form method="post" action="sDeleteEvent">
-			<a href="ModifyEvent.jsp?id=<%=event.get(0).getIdEvent()%>"><button class="btn btn-primary" type="button">Modify</button></a>
-		  	<button class="btn btn-danger" type="submit">Delete</button>
-		</form>
-		<br>
-	  	<a href="Events.jsp"><button class="btn btn-default">Go back</button></a>
-	</div>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+				<span class="contact100-form-title">
+					Event <%=event.get(0).getTitle()%> data:
+				</span>
 	
+				<b>Sport</b><div class="wrap-input100 validate-input">
+					<%=sport.get(0).getName() %>
+					<span class="focus-input100"></span>
+				</div>
+				<%if (event.get(0).getIsIndoor()){ %>
+					<b> Is Indoor </b><div class="wrap-input100 validate-input">
+					Yes
+					<span class="focus-input100"></span>
+				</div>
+				<%}else{ %>
+					<b> Is Indoor </b><div class="wrap-input100 validate-input">
+					No
+					<span class="focus-input100"></span>
+				</div>
+				<%} %>
+				<b>Price</b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getPrice() %>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<b>Address </b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getAddress() %>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<b>City </b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getCity() %>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<b> Capacity </b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getCapacity() %>
+					<span class="focus-input100"></span>
+				</div>
+	
+				<b>Date</b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getDateEvent() %>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<b>Description</b> <div class="wrap-input100 validate-input">
+					<%=event.get(0).getDescription() %>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<form method="post" action="sDeleteEvent">
+					<div class="container-contact100-form-btn">
+						<a href="ModifyEvent.jsp?id=<%=event.get(0).getIdEvent()%>"><button class="contact100-form-btn" type="button">Modify</button></a>			
+					  	<button class="btn btn-danger" type="submit">Delete</button>
+				  	</div>
+				  	<br>
+				</form>
+			<a href="Events.jsp"><button style="margin-left: 190px;" class="btn btn-default">Go back</button></a>
+		</div>
+	</div>
 </body>
 </html>
