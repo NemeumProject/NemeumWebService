@@ -15,7 +15,7 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V9</title>
+	<title>Scenario <%=l.get(0).getTitle()%> data:</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -63,7 +63,7 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 					<span class="focus-input100"></span>
 				</div>
 				Price: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="price" placeholder="Price" value="<%=l.get(0).getPrice() %>" required>
+					<input class="input100" type="number" name="price" placeholder="Price" value="<%=l.get(0).getPrice() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 				
@@ -88,7 +88,7 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 				</div>
 				
 				Capacity: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="capacity" placeholder="Capacity" value="<%= l.get(0).getCapacity() %>" required>
+					<input class="input100" type="number" name="capacity" placeholder="Capacity" value="<%= l.get(0).getCapacity() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -101,14 +101,6 @@ List<CompanyUser> listCompany = c.getCompanyUsers();
 					<input class="input100" type="text" name="description" placeholder="Description" value="<%=l.get(0).getDescription() %>" required>
 					<span class="focus-input100"></span>
 				</div>
-				
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
-					<br>
 				
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" type="submit" class="btn btn-primary">Modify</button>

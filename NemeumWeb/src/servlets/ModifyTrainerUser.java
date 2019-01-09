@@ -45,8 +45,6 @@ public class ModifyTrainerUser extends HttpServlet {
 		HttpSession session = null;
 		session = request.getSession(true);
 		TrainerUser user = new TrainerUser();
-		String regex = "[0-9]+";
-		if(request.getParameter("phone").matches(regex)) {
 			int idUser = Integer.parseInt((String) session.getAttribute("idUser"));
 			user.setId_TrainerUser(idUser);
 			user.setFirst_name(request.getParameter("name"));
@@ -72,16 +70,6 @@ public class ModifyTrainerUser extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/IndividualUser.jsp");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
         
 	}
 

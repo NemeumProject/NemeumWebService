@@ -11,7 +11,7 @@ List<IndividualUser> l = c.getIndividualUser(Integer.parseInt(id));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Modify data</title>
+	<title>User <%=l.get(0).getFirst_name()%> data: </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -86,16 +86,9 @@ List<IndividualUser> l = c.getIndividualUser(Integer.parseInt(id));
 				</div>
 				
 				Phone <div class="wrap-input100 validate-input" data-validate="Please enter your postal phone">
-					<input class="input100" type="text" name="phone" placeholder="Phone" value="<%= l.get(0).getPhone() %>" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" value="<%= l.get(0).getPhone() %>" required>
 					<span class="focus-input100"></span>
 				</div>
-				
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
 				
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" type="submit" class="btn btn-primary">Modify</button>

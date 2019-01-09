@@ -63,10 +63,7 @@ public class PostScenario extends HttpServlet {
 		Queries c = new Queries();
 		
 		
-		
-		String regex = "[0-9]+";
-		
-		if(request.getParameter("price").matches(regex) && request.getParameter("capacity").matches(regex)) {
+
 			scenario.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
 			
 			String dateString = request.getParameter("date");
@@ -90,16 +87,7 @@ public class PostScenario extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Post-Scenario");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 
 }

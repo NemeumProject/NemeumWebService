@@ -67,7 +67,7 @@ List<Sport> listSport = c.getSports();
 			    			</div>
 					
 				Price: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="price" placeholder="Price" required>
+					<input class="input100" type="number" name="price" placeholder="Price" required>
 					<span class="focus-input100"></span>
 				</div>
 				
@@ -82,12 +82,12 @@ List<Sport> listSport = c.getSports();
 				</div>
 				
 				Capacity: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="capacity" placeholder="Capacity" required>
+					<input class="input100" type="number" name="capacity" placeholder="Capacity" required>
 					<span class="focus-input100"></span>
 				</div>
 				
 				Phone: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="phone" placeholder="Phone" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" required>
 					<span class="focus-input100"></span>
 				</div>
 				
@@ -100,14 +100,6 @@ List<Sport> listSport = c.getSports();
 							<input class="input100" type="text" name="description" placeholder="description" required>		
 					<span class="focus-input100"></span>
 				</div>
-				
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
-					<br>
 
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" type="submit" class="btn btn-primary">Create</button>

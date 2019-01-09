@@ -56,9 +56,7 @@ public class ModifyEvent extends HttpServlet {
 		Event event = new Event();
 		Queries c = new Queries();
 		
-		String regex = "[0-9]+";
 		
-		if(request.getParameter("price").matches(regex) && request.getParameter("phone").matches(regex) && request.getParameter("capacity").matches(regex)) {
 		
 			int idEvent = Integer.parseInt((String) session.getAttribute("idEvent"));
 			event.setIdEvent(idEvent);
@@ -93,16 +91,6 @@ public class ModifyEvent extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Events.jsp");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
         
 	}
 

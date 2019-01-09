@@ -49,9 +49,6 @@ public class PostCompanyUser extends HttpServlet {
 		CompanyUser user = new CompanyUser();
 		
 		session = request.getSession(true);
-		String regex = "[0-9]+";
-		
-		if(request.getParameter("phone").matches(regex)) {
 		
 			user.setComercialName(request.getParameter("comercial_name"));
 			user.setCompanyName(request.getParameter("company_name"));
@@ -75,16 +72,7 @@ public class PostCompanyUser extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else{
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Post-CompanyUser");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 
 }

@@ -56,9 +56,7 @@ public class ModifyScenario extends HttpServlet {
 		Scenario scenario = new Scenario();
 		Queries c = new Queries();
 		
-		String regex = "[0-9]+";
 		
-		if(request.getParameter("price").matches(regex) && request.getParameter("capacity").matches(regex)) {
 		
 			int idScenario = Integer.parseInt((String) session.getAttribute("idScenario"));
 			scenario.setIdScenario(idScenario);
@@ -85,16 +83,7 @@ public class ModifyScenario extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Scenarios.jsp");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
         
 	}
 }

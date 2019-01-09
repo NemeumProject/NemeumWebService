@@ -46,9 +46,6 @@ public class ModifyCompanyUser extends HttpServlet {
 		session = request.getSession(true);
 		CompanyUser user = new CompanyUser();
 		
-		String regex = "[0-9]+";
-		if(request.getParameter("phone").matches(regex)) {
-		
 			int idUser = Integer.parseInt((String) session.getAttribute("idUser"));
 			user.setId_CompanyUser(idUser);
 			user.setComercialName(request.getParameter("comercial_name"));
@@ -74,16 +71,6 @@ public class ModifyCompanyUser extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/CompanyUser.jsp");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
         
 	}
 

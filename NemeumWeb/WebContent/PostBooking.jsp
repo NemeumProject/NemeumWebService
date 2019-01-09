@@ -4,13 +4,6 @@
 <%@ page import="java.util.List"%>
 <%@ page import="beans.*"%>
 <%@ page import="queries.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>Booking a scenario</title>
-</head>
 <%
 Queries c = new Queries();
 List<Scenario> listScenario = c.getScenarios();
@@ -18,7 +11,7 @@ List<Scenario> listScenario = c.getScenarios();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create an individual user</title>
+	<title>Booking a scenario</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -80,13 +73,13 @@ List<Scenario> listScenario = c.getScenarios();
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate="Please enter the price">
+				<div class="wrap-input100 validate-input">
 					<input class="input100" type="text" name="customer_name" placeholder="Customer name" required>
 					<span class="focus-input100"></span>
 				</div>
 				
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="phone" placeholder="Phone" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" required>
 					<span class="focus-input100"></span>
 				</div>
 				

@@ -11,7 +11,7 @@ List<CompanyUser> listCompany = c.getCompanyUser(Integer.parseInt(id));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V9</title>
+	<title>Company <%=listCompany.get(0).getCompanyName()%> data:</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->

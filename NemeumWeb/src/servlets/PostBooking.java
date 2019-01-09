@@ -67,8 +67,7 @@ public class PostBooking extends HttpServlet {
 		Scenario_IndividualUser indScenario = new Scenario_IndividualUser();
 		Queries c = new Queries();
 		
-		String regex = "[0-9]+";
-		if(request.getParameter("phone").matches(regex)) {
+		
 		
 			indScenario.setPhone(Integer.parseInt(request.getParameter("phone")));
 			indScenario.setCustomerName(request.getParameter("customer_name"));
@@ -82,7 +81,6 @@ public class PostBooking extends HttpServlet {
 			indScenario.setStartBooking(dateStart);
 			Date dateEnd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(endBooking);
 			indScenario.setEndBooking(dateEnd);
-			String title = request.getParameter("title");
 			indScenario.setId_Scenario(c.getScenarioByTile(request.getParameter("scenario")).get(0).getIdScenario());
 			
 			String dateBooking =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
@@ -98,16 +96,6 @@ public class PostBooking extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/PostBooking.jsp");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 }

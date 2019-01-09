@@ -84,16 +84,9 @@
 				</div>
 				
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="phone" placeholder="Phone" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" required>
 					<span class="focus-input100"></span>
 				</div>
-				
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
 				
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="text" name="description" placeholder="Description" required>

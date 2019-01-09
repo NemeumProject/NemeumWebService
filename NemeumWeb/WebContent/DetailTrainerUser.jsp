@@ -11,7 +11,7 @@ List<TrainerUser> listTrainer = c.getTrainerUser(Integer.parseInt(id));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V9</title>
+	<title>Trainer <%=listTrainer.get(0).getFirst_name()%> data: </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->

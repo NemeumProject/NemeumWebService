@@ -49,8 +49,7 @@ public class PostIndividualUser extends HttpServlet {
 		IndividualUser user = new IndividualUser();
 		
 		session = request.getSession(true);
-		String regex = "[0-9]+";
-		if(request.getParameter("phone").matches(regex)) {
+	
 			user.setFirst_name(request.getParameter("name"));
 			user.setMiddle_surname_initial(request.getParameter("surname"));
 			user.setLast_surname(request.getParameter("last_surname"));
@@ -71,16 +70,7 @@ public class PostIndividualUser extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Post-IndividualUser");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 		
 		
 	}

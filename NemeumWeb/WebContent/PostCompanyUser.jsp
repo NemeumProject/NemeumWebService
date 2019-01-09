@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create a trainer user</title>
+	<title>Create a company user</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -84,15 +84,9 @@
 				</div>
 				
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="phone" placeholder="Phone" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" required>
 					<span class="focus-input100"></span>
 				</div>
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
 				
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="text" name="description" placeholder="Description" required>

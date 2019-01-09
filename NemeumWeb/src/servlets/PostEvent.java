@@ -64,10 +64,6 @@ public class PostEvent extends HttpServlet {
 		Event event = new Event();
 		Queries c = new Queries();
 		
-		String regex = "[0-9]+";
-		
-		if(request.getParameter("price").matches(regex) && request.getParameter("phone").matches(regex) && request.getParameter("capacity").matches(regex)) {
-		
 			event.setCapacity(Integer.parseInt((String) request.getParameter("capacity")));
 			event.setPhone(Integer.parseInt((String) request.getParameter("phone")));
 			String dateString = request.getParameter("date");
@@ -99,16 +95,7 @@ public class PostEvent extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("errorMessage", "Invalid numeric data");
-			ServletContext context = getServletContext();
-			RequestDispatcher df = context.getRequestDispatcher("/Post-Event");
-			try {
-				df.forward(request, response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 
 }

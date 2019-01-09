@@ -13,7 +13,7 @@ List<Sport> sport = c.getSport(event.get(0).getIdSport());
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Scenario <%=event.get(0).getTitle()%></title>
+	<title>Event <%=event.get(0).getTitle()%></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->

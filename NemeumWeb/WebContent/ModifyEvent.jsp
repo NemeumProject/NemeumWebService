@@ -80,7 +80,7 @@ List<Sport> listSport = c.getSports();
 					<br>
 				<%} %>
 				Price: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="price" placeholder="Price" value="<%=l.get(0).getPrice() %>" required>
+					<input class="input100" type="number" name="price" placeholder="Price" value="<%=l.get(0).getPrice() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -95,12 +95,12 @@ List<Sport> listSport = c.getSports();
 				</div>
 				
 				Capacity: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="capacity" placeholder="Capacity" value="<%= l.get(0).getCapacity() %>" required>
+					<input class="input100" type="number" name="capacity" placeholder="Capacity" value="<%= l.get(0).getCapacity() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				Phone: <div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="phone" placeholder="Phone" value="<%= l.get(0).getPhone() %>" required>
+					<input class="input100" type="number" name="phone" placeholder="Phone" value="<%= l.get(0).getPhone() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -113,13 +113,6 @@ List<Sport> listSport = c.getSports();
 							<input class="input100" type="text" name="description" value="<%=l.get(0).getDescription() %>" required>		
 					<span class="focus-input100"></span>
 				</div>
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
-					<br>
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" type="submit" class="btn btn-primary">Modify</button>
 			  		<a href="DetailEvent.jsp?id=<%=l.get(0).getIdEvent()%>"><button class="btn btn-default" type="button">Go back</button></a>

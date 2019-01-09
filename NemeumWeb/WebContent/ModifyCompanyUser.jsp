@@ -11,7 +11,7 @@ List<CompanyUser> l = c.getCompanyUser(Integer.parseInt(id));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V9</title>
+	<title>Company <%=l.get(0).getCompanyName()%> data</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -91,16 +91,10 @@ List<CompanyUser> l = c.getCompanyUser(Integer.parseInt(id));
 				</div>
 				
 				Phone <div class="wrap-input100 validate-input" data-validate="Please enter your postal phone">
-					<input class="input100" type="text" name="phone" placeholder="phone" value="<%= l.get(0).getPhone() %>" required>
+					<input class="input100" type="number" name="phone" placeholder="phone" value="<%= l.get(0).getPhone() %>" required>
 					<span class="focus-input100"></span>
 				</div>
 				
-				<%
-					    if(null != request.getAttribute("errorMessage"))
-					    {
-					        out.println(request.getAttribute("errorMessage"));
-					    }
-					%>
 				
 				Description <div class="wrap-input100 validate-input">
 					<input class="input100" type="text" name="description" placeholder="Description" value="<%=l.get(0).getDescription() %>" required>
